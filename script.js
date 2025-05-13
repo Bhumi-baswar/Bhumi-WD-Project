@@ -1,12 +1,15 @@
 // ------------------- Login Logic ------------------- //
-if (window.location.pathname.includes("index.html")) {
+if (window.location.pathname.includes("index.html") || window.location.pathname.endsWith('/')) {
   document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
     if (username === "admin" && password === "1234") {
-      window.location.href = "app.html";
+      // Get the current directory path
+      const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+      // Construct absolute path to app.html
+      window.location.href = currentPath + "app.html";
     } else {
       alert("Invalid credentials! Try admin / 1234");
     }
